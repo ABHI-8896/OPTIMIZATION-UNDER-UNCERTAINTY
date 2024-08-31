@@ -68,8 +68,9 @@ x_bounds = [(0, None), (0, None)]
 result = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=[x_bounds])
 
 print(f"Optimal solution: {result.x}")
-print(f"Optimal value: {result.fun}")
-## Results
+print(f"Optimal value: {result.fun}") ```
+
+###Results
 
 ### Naive Approach
 
