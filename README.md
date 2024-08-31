@@ -28,6 +28,48 @@ Profit = ∑ SP(j) × X(j) - ∑ ( PCl(j) × L(j) + PCm(j) × M(j) + PCh(j) × H
 - Incorporates uncertainty bounds within a deterministic framework.
 - Controls the degree of conservatism to ensure feasible solutions under specified uncertainty levels.
 
+
+def normal_perturbation(original_value):
+    return original_value * (1 + 0.5 * np.random.normal(0, 0.2))
+
+# Example usage
+original_value = 100
+uniform_value = uniform_perturbation(original_value)
+normal_value = normal_perturbation(original_value)
+
+
+
+###Results
+
+### Naive Approach
+
+- Demonstrates variability in profits under different scenarios of raw material availability.
+- Provides insights into the impact of uncertainty but lacks systematic control over robustness.
+
+### Robust Optimization
+
+- Offers a computationally efficient solution that incorporates uncertainty bounds within a deterministic framework.
+- Balances optimality and resilience, allowing decision-makers to control the degree of conservatism and ensure feasible solutions under specified uncertainty levels.
+
+## Future Work
+
+- **Refinement of Robust Optimization Model**: Explore further refinement and fine-tuning of the robust optimization model, including adjustments in formulation parameters and additional constraints.
+- **Integration of Real-Time Data**: Investigate incorporating real-time data to update the optimization model dynamically, enhancing the decision-making process under changing conditions.
+- **Comparative Analysis**: Conduct a comprehensive comparative analysis between various uncertainty modeling approaches, such as stochastic programming and fuzzy programming, to understand their strengths and limitations.
+- **Application to Specific Industries**: Extend the research to focus on specific industries, tailoring optimization models to their unique challenges, such as electrical power generation, reservoir operation, or inventory management.
+- **Incorporation of Multi-Objective Optimization**: Explore the integration of multi-objective optimization techniques to balance conflicting goals, considering factors like risk mitigation and resource utilization alongside profit.
+- **Machine Learning Integration**: Investigate the use of machine learning techniques to predict and adapt to uncertainty patterns, enhancing the robustness of the optimization model in dynamic environments.
+  
+### Naive Approach
+
+- Executes the optimization model with different scenarios of raw material availability.
+- Analyzes variations in profits to understand the impact of uncertainty.
+
+### Robust Optimization Approach
+
+- Incorporates uncertainty bounds within a deterministic framework.
+- Controls the degree of conservatism to ensure feasible solutions under specified uncertainty levels.
+
 ## Code Snippets
 
 ### Naive Approach: Multiple Runs with Different Scenarios
@@ -68,25 +110,5 @@ x_bounds = [(0, None), (0, None)]
 result = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=[x_bounds])
 
 print(f"Optimal solution: {result.x}")
-print(f"Optimal value: {result.fun}") ```
+print(f"Optimal value: {result.fun}")
 
-###Results
-
-### Naive Approach
-
-- Demonstrates variability in profits under different scenarios of raw material availability.
-- Provides insights into the impact of uncertainty but lacks systematic control over robustness.
-
-### Robust Optimization
-
-- Offers a computationally efficient solution that incorporates uncertainty bounds within a deterministic framework.
-- Balances optimality and resilience, allowing decision-makers to control the degree of conservatism and ensure feasible solutions under specified uncertainty levels.
-
-## Future Work
-
-- **Refinement of Robust Optimization Model**: Explore further refinement and fine-tuning of the robust optimization model, including adjustments in formulation parameters and additional constraints.
-- **Integration of Real-Time Data**: Investigate incorporating real-time data to update the optimization model dynamically, enhancing the decision-making process under changing conditions.
-- **Comparative Analysis**: Conduct a comprehensive comparative analysis between various uncertainty modeling approaches, such as stochastic programming and fuzzy programming, to understand their strengths and limitations.
-- **Application to Specific Industries**: Extend the research to focus on specific industries, tailoring optimization models to their unique challenges, such as electrical power generation, reservoir operation, or inventory management.
-- **Incorporation of Multi-Objective Optimization**: Explore the integration of multi-objective optimization techniques to balance conflicting goals, considering factors like risk mitigation and resource utilization alongside profit.
-- **Machine Learning Integration**: Investigate the use of machine learning techniques to predict and adapt to uncertainty patterns, enhancing the robustness of the optimization model in dynamic environments.
